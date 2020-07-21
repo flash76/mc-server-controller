@@ -6,8 +6,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class MCServerConfigurator {
+public class Server {
 
     public enum ServerModType {
         FORGE,
@@ -20,27 +21,32 @@ public class MCServerConfigurator {
     private int maxHeap;
     private ServerModType serverModChoice;
 
-    public MCServerConfigurator(String serverDirectory, ServerModType serverModChoice, String serverModVersion) {
+    public Server(String serverDirectory, ServerModType serverModChoice, String serverModVersion) {
         this.serverDirectory = serverDirectory;
 
-        Document docVersion;
-        try {
-            switch (serverModChoice) {
-                case FORGE: {
-                    docVersion = Jsoup.connect("https://files.minecraftforge.net").get();
-                    Elements selected = docVersion.select("li.li-version-list");
-                    for (Element element : selected) { String[] versions = element.select("a[href]").text().split(" "); }
-                }
-                case PAPER_SPIGOT: {
-                    docVersion = Jsoup.connect("https://papermc.io/downloads").get();
-                }
-                case SPIGOT: {
-
-                }
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+//        Document docVersion;
+//        try {
+//            switch (serverModChoice) {
+//                case FORGE: {
+//                    docVersion = Jsoup.connect("https://files.minecraftforge.net").get();
+//                    Elements selected = docVersion.select("li.li-version-list");
+//                    StringBuilder versionString = new StringBuilder();
+//                    for (Element element : selected) {
+//                       versionString.append(element.select("a[href]").text() + " ");
+//                    }
+//                    String[] versions = versionString.toString().split(" ");
+//                }
+//                case PAPER_SPIGOT: {
+//                    docVersion = Jsoup.connect("https://papermc.io/downloads").get();
+//                }
+//                case SPIGOT: {
+//
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+        Versions.getVersions(serverModChoice);
 
         this.serverModChoice = serverModChoice;
     }
