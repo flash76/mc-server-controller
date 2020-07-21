@@ -1,8 +1,7 @@
 .page-wrapper {
     height: 100%;
     width: 100%;
-    color: gray;
-    left: 50%;
+    color: black;
     align-items: center;
     -webkit-box-align: center;
     display: flex;
@@ -10,14 +9,35 @@
 
 .login-container {
     border-color: #dddddd;
-    margin-bottom: 80px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+
 }
 
 .panel-body {
+    padding: 15px;
     margin-right: auto;
     margin-left: auto;
+    border: solid #000000;
+    border-radius: 20px;
 }
-.input-group {
-    position: relative;
 
+.input-group {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+
+.submit-group {
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+.text
+
+{
+    margin-left: auto;
+    margin-right: auto;
 }
