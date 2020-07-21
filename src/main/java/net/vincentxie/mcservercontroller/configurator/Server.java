@@ -2,6 +2,7 @@ package net.vincentxie.mcservercontroller.configurator;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class MCServerConfigurator {
     private int maxHeap;
     private ServerModType serverModChoice;
 
-    public MCServerConfigurator(String serverDirectory, ServerModType serverModChoice) {
+    public MCServerConfigurator(String serverDirectory, ServerModType serverModChoice, String serverModVersion) {
         this.serverDirectory = serverDirectory;
 
         Document docVersion;
@@ -27,8 +28,8 @@ public class MCServerConfigurator {
             switch (serverModChoice) {
                 case FORGE: {
                     docVersion = Jsoup.connect("https://files.minecraftforge.net").get();
-                    Elements versions = docVersion.select("li.li-version-list");
-                    System.out.println(versions);
+                    Elements selected = docVersion.select("li.li-version-list");
+                    for (Element element : selected) { String[] versions = element.select("a[href]").text().split(" "); }
                 }
                 case PAPER_SPIGOT: {
                     docVersion = Jsoup.connect("https://papermc.io/downloads").get();
