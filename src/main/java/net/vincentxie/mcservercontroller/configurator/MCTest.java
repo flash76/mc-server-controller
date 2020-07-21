@@ -2,6 +2,11 @@ package net.vincentxie.mcservercontroller.configurator;
 
 public class MCTest {
     public static void main(String[] args) {
-        MCServerConfigurator serverConfigurator = new MCServerConfigurator("", MCServerConfigurator.ServerModType.FORGE);
+        Server serverConfigurator = new Server("", Server.ServerModType.FORGE, "1.15.2");
+
+        // Tests how the version getting thing works
+//        for (String i : Versions.getVersions(Server.ServerModType.FORGE)) {
+//            System.out.println(i);
+//        }
     }
 }
