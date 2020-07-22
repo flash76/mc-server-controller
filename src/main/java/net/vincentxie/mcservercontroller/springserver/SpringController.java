@@ -42,4 +42,5 @@ public class SpringController {
         return "/servercreate/memory";
     }
 
+
 }
