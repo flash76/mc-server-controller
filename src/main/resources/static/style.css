@@ -41,7 +41,8 @@ html, body {
     padding-right: 10px;
     padding-left: 10px;
     margin: auto;
-    min-width: 300px;
+    min-width: 500px;
+    min-height: 500px;
 }
 
 .panel-body {
@@ -53,25 +54,28 @@ html, body {
 }
 
 .input-group {
+    display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
     border: 2px solid transparent;
 }
 
 .submit-group {
-
     border: 1px solid transparent;
     border-radius: 8px;
 }
+
 .text {
     margin-left: auto;
     margin-right: auto;
 }
 
 .input {
+    min-width: 400px;
+    min-height: 30px;
     border: 2px solid;
     margin: auto;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
