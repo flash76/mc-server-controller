@@ -32,12 +32,11 @@ public class Server {
     private int maxHeap;
 
     private ServerModType serverModChoice;
-    private String[] availableModVersions;
     private String serverModVersion;
 
-    public Server(String serverDirectory, ServerModType serverModChoice, String serverModVersion) throws IOException, ParseException {
+    public Server(String serverDirectory, ServerModType serverModChoice, String serverModVersion) {
         this.serverDirectory = serverDirectory;
-        this.availableModVersions = Versions.getVersions(serverModChoice);
+        this.serverModVersion = serverModVersion;
     }
 
     public void setMinHeap(int minHeap) {
@@ -56,10 +55,9 @@ public class Server {
         return maxHeap;
     }
 
-    public boolean start() throws ServerNoVersionException {
+    public boolean start() {
         // TODO: Make start function
         if (serverModVersion == null || serverModVersion.isEmpty()) {
-            throw new ServerNoVersionException();
         } else {
             // use server dir, check if files are downloaded, if not download them
         }
@@ -70,11 +68,5 @@ public class Server {
     public boolean kill() {
         // TODO: Make kill function
         return true;
-    }
-}
-
-class ServerNoVersionException extends Exception {
-    ServerNoVersionException() {
-        super("No Minecraft server version specified!\nCall the Server.setVersion method ");
     }
 }

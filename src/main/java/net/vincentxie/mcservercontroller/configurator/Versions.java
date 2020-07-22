@@ -1,6 +1,8 @@
 package net.vincentxie.mcservercontroller.configurator;
 
 import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -34,20 +36,22 @@ public class Versions {
                     String[] downloadsArray = downloads.split(System.getProperty("line.separator"));
 
                     ArrayList tmp;
-                    ArrayList<String> paperVersions = new ArrayList<>();
+                    ArrayList<String> versionJsonArray = new ArrayList<>();
                     for (int i = 0; i < downloadsArray.length; i++) {
                         // if this line ends with comma and next line is a closing curly brace
                         if (downloadsArray[i].endsWith(",") && downloadsArray[i + 1].contains("}")) {
                             tmp = new ArrayList(Arrays.asList(downloadsArray[i].split("")));
                             tmp.remove(tmp.size() - 1);
-                            paperVersions.add(String.join("", tmp));
+                            versionJsonArray.add(String.join("", tmp));
                         } else if (downloadsArray[i].contains("//")) {
-                            paperVersions.add(downloadsArray[i].substring(0, downloadsArray[i].length() - downloadsArray[i].indexOf("/")));
+                            versionJsonArray.add(downloadsArray[i].substring(0, downloadsArray[i].length() - downloadsArray[i].indexOf("/")));
                         }
-                        else paperVersions.add(downloadsArray[i]);
+                        else versionJsonArray.add(downloadsArray[i]);
                     }
-                    for (String i : paperVersions) System.out.println(i);
-
+                    for (String i : versionJsonArray) System.out.println(i);
+                    
+                    String versionJson = String.join("", versionJsonArray);
+                    JSONObject jo = (JSONObject) new JSONParser().parse(versionJson);
 
 
                     break;
