@@ -1,5 +1,6 @@
 package net.vincentxie.mcservercontroller.configurator;
 
+import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,44 +12,32 @@ import java.util.ArrayList;
 public class Server {
 
     public enum ServerModType {
-        FORGE,
-        PAPER_SPIGOT,
-        SPIGOT;
+        FORGE("Forge"),
+        PAPER_SPIGOT("Paper_Spigot"),
+        SPIGOT("Spigot"),
+        VANILLA("Vanilla");
+
+        private final String modType;
+        ServerModType(String modType) {
+            this.modType = modType;
+        }
+
+        public String getModType() {
+            return modType;
+        }
     }
 
     private String serverDirectory;
     private int minHeap;
     private int maxHeap;
+
     private ServerModType serverModChoice;
+    private String[] availableModVersions;
+    private String serverModVersion;
 
-    public Server(String serverDirectory, ServerModType serverModChoice, String serverModVersion) {
+    public Server(String serverDirectory, ServerModType serverModChoice, String serverModVersion) throws IOException, ParseException {
         this.serverDirectory = serverDirectory;
-
-//        Document docVersion;
-//        try {
-//            switch (serverModChoice) {
-//                case FORGE: {
-//                    docVersion = Jsoup.connect("https://files.minecraftforge.net").get();
-//                    Elements selected = docVersion.select("li.li-version-list");
-//                    StringBuilder versionString = new StringBuilder();
-//                    for (Element element : selected) {
-//                       versionString.append(element.select("a[href]").text() + " ");
-//                    }
-//                    String[] versions = versionString.toString().split(" ");
-//                }
-//                case PAPER_SPIGOT: {
-//                    docVersion = Jsoup.connect("https://papermc.io/downloads").get();
-//                }
-//                case SPIGOT: {
-//
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-        Versions.getVersions(serverModChoice);
-
-        this.serverModChoice = serverModChoice;
+        this.availableModVersions = Versions.getVersions(serverModChoice);
     }
 
     public void setMinHeap(int minHeap) {
@@ -67,13 +56,25 @@ public class Server {
         return maxHeap;
     }
 
-    public boolean start() {
+    public boolean start() throws ServerNoVersionException {
         // TODO: Make start function
+        if (serverModVersion == null || serverModVersion.isEmpty()) {
+            throw new ServerNoVersionException();
+        } else {
+            // use server dir, check if files are downloaded, if not download them
+        }
+
         return true;
     }
 
     public boolean kill() {
         // TODO: Make kill function
         return true;
+    }
+}
+
+class ServerNoVersionException extends Exception {
+    ServerNoVersionException() {
+        super("No Minecraft server version specified!\nCall the Server.setVersion method ");
     }
 }
