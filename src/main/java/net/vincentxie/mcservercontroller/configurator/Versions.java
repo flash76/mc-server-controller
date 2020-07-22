@@ -28,15 +28,11 @@ public class Versions {
                 case PAPER_SPIGOT: {
                     docVersion = Jsoup.connect("https://papermc.io/downloads").get();
                     Elements selected = docVersion.select("li.tab");
-                    StringBuilder versionString = new StringBuilder();
-                    for (Element element : selected) {
-                        versionString.append(element.select("a[href]").text()).append(" ");
-                    }
-
-//                    finalVer = versionString.toString().split(" ");
+                    System.out.println(selected.toString());
                     break;
                 }
                 case SPIGOT: {
+                    System.out.print("hiu");
                     break;
                 }
                 default: {
