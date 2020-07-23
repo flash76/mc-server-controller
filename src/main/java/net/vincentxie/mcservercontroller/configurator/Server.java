@@ -1,14 +1,5 @@
 package net.vincentxie.mcservercontroller.configurator;
 
-import org.json.simple.parser.ParseException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Server {
 
     public enum ServerModType {

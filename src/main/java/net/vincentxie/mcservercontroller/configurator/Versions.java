@@ -1,9 +1,8 @@
 package net.vincentxie.mcservercontroller.configurator;
 
 import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,9 +13,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Versions {
-    public static String[] getVersions(Server.ServerModType forVersion) throws IOException, ParseException {
+    public static String[] getVersions(Server.ServerModType forVersion) throws IOException {
         Document docVersion;
         ArrayList<String> finalVers = new ArrayList<>();
             switch (forVersion) {
@@ -44,15 +45,21 @@ public class Versions {
                             tmp.remove(tmp.size() - 1);
                             versionJsonArray.add(String.join("", tmp));
                         } else if (downloadsArray[i].contains("//")) {
-                            versionJsonArray.add(downloadsArray[i].substring(0, downloadsArray[i].length() - downloadsArray[i].indexOf("/")));
+                            versionJsonArray.add(downloadsArray[i].substring(0, downloadsArray[i].length() - downloadsArray[i].indexOf("//") + 7));
                         }
                         else versionJsonArray.add(downloadsArray[i]);
                     }
                     for (String i : versionJsonArray) System.out.println(i);
                     
                     String versionJson = String.join("", versionJsonArray);
-                    JSONObject jo = (JSONObject) new JSONParser().parse(versionJson);
 
+                    JSONObject jsonObject = new JSONObject(versionJson);
+//                    String pageName = jsonObject.getJSONObject("pageInfo").getString("pageName");
+//                    JSONArray arr = jsonObject.getJSONArray("posts");
+
+                    Set keySet = jsonObject.keySet();
+                    Iterator<?> i = keySet.iterator();
+                    do finalVers.add(jsonObject.getJSONObject(i.next().toString()).getString("title")); while(i.hasNext());
 
                     break;
                 }

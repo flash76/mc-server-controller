@@ -1,6 +1,5 @@
 package net.vincentxie.mcservercontroller.springserver;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,7 @@ public class SpringController {
     }
 
     @GetMapping("/servercreate/version")
-    public String setServerVersion(@RequestParam(name = "serverVersion", required = false) String inServerVersion, Model model) throws IOException, ParseException {
+    public String setServerVersion(@RequestParam(name = "serverVersion", required = false) String inServerVersion, Model model) throws IOException {
         model.addAttribute("possibleVersions", Versions.getVersions(serverType));
         serverVersion=inServerVersion;
 

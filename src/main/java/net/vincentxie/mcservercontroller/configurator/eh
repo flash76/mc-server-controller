@@ -1,0 +1,34 @@
+ {
+    "Paper-1.16": {
+        "title": "Paper 1.16.1",
+        "api_endpoint": "paper",
+        "api_version": "1.16.1",
+        "jenkins": "Paper-1.16",
+        "github": "PaperMC/Paper",
+        "desc": "Active development for the current Minecraft version."
+    },
+    "Paper-1.15": {
+        "title": "Paper 1.15.2",
+        "api_endpoint": "paper",
+        "api_version": "1
+        "jenkins": "Paper-1.15",
+        "github": "PaperMC/Paper",
+        "desc": "Legacy support while the newest version stabilizes."
+    },
+    "Waterfall": {
+        "title": "Waterfall",
+        "api_endpoint": "waterfall",
+        "api_version": "1.16",
+        "jenkins": "Waterfall",
+        "github": "PaperMC/Waterfall",
+        "desc": "Our fork of the BungeeCord software, with improved Forge support and more features."
+    },
+    "Travertine": {
+        "title": "Travertine",
+        "api_endpoint": "travertine",
+        "api_version": "1.16",
+        "jenkins": "Travertine",
+        "github": "PaperMC/Travertine",
+        "desc": "Waterfall, with additional support for Minecraft 1.7.10."
+    }
+}
